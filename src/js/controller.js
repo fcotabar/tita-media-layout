@@ -7,6 +7,7 @@ const ITEMS_PER_PAGE = 9;
 let page = 1;
 
 const portfolioGrid = document.querySelector('.portfolio__grid');
+const btnGridType = document.querySelector('.grid-selector');
 const btnShowMore = document.querySelector('.btn__show-more');
 
 const showMoreHandler = function (e) {
@@ -20,6 +21,19 @@ const showMoreHandler = function (e) {
   );
 };
 // console.log(page);
+
+const changeGridTypeHandler = function (e) {
+  e.preventDefault();
+  if (e.target.closest('.btn__grid-column')) {
+    portfolioGrid.classList.add('portfolio__grid--columns');
+    portfolioGrid.classList.remove('portfolio__grid--rows');
+  }
+
+  if (e.target.closest('.btn__grid-row')) {
+    portfolioGrid.classList.remove('portfolio__grid--columns');
+    portfolioGrid.classList.add('portfolio__grid--rows');
+  }
+};
 
 const getItemSize = function (height, width) {
   const sizes = [
@@ -73,17 +87,9 @@ const loadPhotos = async function (url) {
       const { urls, alt_description, height, width } = photo;
       const itemSize = getItemSize(height, width);
 
-      console.log(
-        `H: ${height}- W: ${width}=${height / width} ==> ${Math.floor(
-          (height / width) * 10
-        )} =>>> ${itemSize}`
-      );
-
       const markup = renderPhotos(urls.small, alt_description, itemSize);
       portfolioGrid.insertAdjacentHTML('beforeend', markup);
     });
-    // .insertAdjacentHTML('afterbegin', markup)
-    console.log(results);
     // return res;
   } catch (err) {
     console.error(err);
@@ -92,6 +98,7 @@ const loadPhotos = async function (url) {
 
 // const renderPhotos = function() {};
 btnShowMore.addEventListener('click', showMoreHandler);
+btnGridType.addEventListener('click', changeGridTypeHandler);
 
 loadPhotos(
   `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`

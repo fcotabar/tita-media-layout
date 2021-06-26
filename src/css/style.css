@@ -196,14 +196,26 @@ PORTFOLIO
   fill: var(--color-primary);
 }
 
+.grid-selector__icon:hover {
+  fill: var(--color-primary-light);
+}
+
 .portfolio__grid {
   max-width: 1170px;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, 350px);
+
   grid-auto-rows: 10px;
   justify-content: center;
+}
+
+.portfolio__grid--columns {
+  grid-template-columns: repeat(auto-fit, 350px);
   column-gap: 35px;
+}
+
+.portfolio__grid--rows {
+  grid-template-columns: 350px;
 }
 
 .portfolio__grid-item {
