@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff5672;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Column_Icon" data-name="Column Icon" class="cls-1" d="M0,0V5H14V0H0ZM0,14H14V9H0v5Z"/>
+</svg>
