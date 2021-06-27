@@ -15,9 +15,17 @@
   </head>
   <body>
     <header class="header">
-      <img src="src/img/logo-header.png" alt="Logo" class="header__logo" />
+      <div class="nav-header">
+        <img src="src/img/logo-header.png" alt="Logo" class="header__logo" />
 
-      <ul class="nav-main">
+        <a href="#" class="grid-selector__link btn__hamburger-nav">
+          <svg class="grid-selector__icon">
+            <use xlink:href="src/img/sprite.svg#icon-bars"></use>
+          </svg>
+        </a>
+      </div>
+
+      <ul class="nav-main nav-main--header">
         <li class="nav-main__item">
           <a href="#" class="nav-main__link">All</a>
         </li>

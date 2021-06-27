@@ -9,7 +9,8 @@ const API_KEY = 'vodmIJuD9An8bl57-l_CkGeUBy8kCmDQ3sCZwihGr94';
 const ITEMS_PER_PAGE = 12;
 
 let page = 1;
-
+const mainMenu = document.querySelector('.nav-main--header');
+const btnHamburguerNav = document.querySelector('.btn__hamburger-nav');
 const portfolioGrid = document.querySelector('.portfolio__grid');
 const btnsPortfolioFilter = document.querySelectorAll('.nav-main__link');
 const btnGridType = document.querySelector('.grid-selector');
@@ -85,6 +86,11 @@ const loadPhotos = async function (url) {
 //    HANDLERS
 ///////////////////////////////////////////////////////
 
+const showMenuHandler = function (e) {
+  e.preventDefault();
+  mainMenu.classList.toggle('show');
+};
+
 const showMoreHandler = function (e) {
   e.preventDefault();
   console.log(e.target);
@@ -129,6 +135,7 @@ const portfolioFilterHandler = function (e) {
 //    EVENT LISTENERS
 ///////////////////////////////////////////////////////
 
+btnHamburguerNav.addEventListener('click', showMenuHandler);
 btnShowMore.addEventListener('click', showMoreHandler);
 btnGridType.addEventListener('click', changeGridTypeHandler);
 btnsPortfolioFilter.forEach((btn) =>

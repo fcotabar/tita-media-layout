@@ -64,13 +64,17 @@ h3 {
   font-size: 1.3rem;
 }
 
+.btn__hamburger-nav {
+  display: none;
+}
+
 /******************************************
 HEADER
 ******************************************/
 
 .header {
   width: 100%;
-  height: 10rem;
+  min-height: 10rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,18 +86,25 @@ HEADER
 NAV BAR
 ******************************************/
 
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+}
+
 .nav-main {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  height: 3.5rem;
+  min-height: 3.5rem;
 }
 
 .nav-main__item {
   /* margin: 0 2rem; */
   align-self: auto;
-  height: 100%;
+  height: 3.4rem;
   display: flex;
   align-items: center;
 }
@@ -101,12 +112,12 @@ NAV BAR
 .nav-main__link,
 .nav-main__link:visited {
   text-decoration: none;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   color: var(--text-color);
   font-size: 1.4rem;
-  transition: background-color 0.2s;
-  height: 100%;
+  transition: background-color 0.2s, color 0.2s;
+  height: 100% !important;
   width: 100%;
   align-items: center;
 }
@@ -377,13 +388,45 @@ FOOTER
 MEDIA QUERYS
 ******************************************/
 
-@media (max-width: 500px) {
-  .nav-main {
-    justify-content: space-between;
+@media (max-width: 680px) {
+  .header {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    /* padding: 0 2rem; */
+  }
+  .nav-header {
+    width: 100%;
   }
 
-  .nav-main__link {
-    padding: 0 1rem;
-    font-size: 1.2rem;
+  .btn__hamburger-nav {
+    display: block;
+  }
+  .nav-main--header {
+    display: none;
+    flex-direction: column !important;
+    width: 100%;
+    align-items: flex-start;
+    border-top: 1px solid var(--text-footer-color);
+    margin-bottom: 1rem;
+  }
+
+  .nav-main--header.show {
+    display: flex;
+  }
+
+  .nav-main--header .nav-main__item {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-main--header .nav-main__link {
+    /* align-items: flex-start !important; */
+    width: 100%;
+    padding: 1rem;
+    height: 100%;
   }
 }
