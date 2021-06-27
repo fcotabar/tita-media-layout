@@ -6,7 +6,7 @@
 
 const API_URL = 'https://api.unsplash.com/search/photos?';
 const API_KEY = 'vodmIJuD9An8bl57-l_CkGeUBy8kCmDQ3sCZwihGr94';
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 12;
 
 let page = 1;
 
@@ -57,7 +57,7 @@ const renderPhotos = function (imgSrc, imgTitle, imgSize) {
   <div class="portfolio__branding">
   <h3 class="portfolio__grid-item-title">CREATIVE LOGO</h3>
   <p class="portfolio__grid-item-text">Branding</p>
-</div>
+  </div>
 
   </div>
   `;
@@ -71,9 +71,10 @@ const loadPhotos = async function (url) {
       const { urls, alt_description, height, width } = photo;
       const itemSize = getItemSize(height, width);
 
-      const markup = renderPhotos(urls.small, alt_description, itemSize);
+      const markup = renderPhotos(urls.regular, alt_description, itemSize);
       portfolioGrid.insertAdjacentHTML('beforeend', markup);
     });
+    // console.log(results);
     // return res;
   } catch (err) {
     console.error(err);
