@@ -82,16 +82,16 @@ HEADER
   flex-wrap: wrap;
 }
 
-/******************************************
-NAV BAR
-******************************************/
-
-.nav-header {
+.header__logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 10rem;
 }
+
+/******************************************
+NAV BAR
+******************************************/
 
 .nav-main {
   list-style: none;
@@ -229,7 +229,8 @@ PORTFOLIO
 }
 
 .portfolio__grid--rows {
-  grid-template-columns: 600px;
+  grid-template-columns: minmax(350px, 600px);
+  padding: 0 1rem;
 }
 
 .portfolio__grid-item {
@@ -397,7 +398,7 @@ MEDIA QUERYS
     /* flex-wrap: wrap; */
     /* padding: 0 2rem; */
   }
-  .nav-header {
+  .header__logo {
     width: 100%;
   }
 
