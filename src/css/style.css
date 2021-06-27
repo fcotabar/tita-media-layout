@@ -74,6 +74,7 @@ HEADER
   align-items: center;
   justify-content: space-between;
   padding: 0 3rem;
+  flex-wrap: wrap;
 }
 
 /******************************************
@@ -83,6 +84,7 @@ NAV BAR
 .nav-main {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   height: 3.5rem;
 }
@@ -364,4 +366,10 @@ PORTFOLIO
   height: 1.6rem;
   width: 1.6rem;
   fill: var(--text-footer-color);
+}
+
+@media (max-width: 500px) {
+  .nav-main__link {
+    padding: 0 1.4rem;
+  }
 }
