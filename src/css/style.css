@@ -370,6 +370,7 @@ PORTFOLIO
 
 @media (max-width: 500px) {
   .nav-main__link {
-    padding: 0 1.4rem;
+    padding: 0 1rem;
+    font-size: 1.2rem;
   }
 }

@@ -1,3 +1,5 @@
+'use-strict';
+
 ///////////////////////
 // CONFIG
 //////////////////////
@@ -9,33 +11,13 @@ const ITEMS_PER_PAGE = 9;
 let page = 1;
 
 const portfolioGrid = document.querySelector('.portfolio__grid');
+const btnsPortfolioFilter = document.querySelectorAll('.nav-main__link');
 const btnGridType = document.querySelector('.grid-selector');
 const btnShowMore = document.querySelector('.btn__show-more');
 
-const showMoreHandler = function (e) {
-  e.preventDefault();
-  console.log(e.target);
-  console.log('handle event');
-  page++;
-  // console.log(page);
-  loadPhotos(
-    `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
-  );
-};
-// console.log(page);
-
-const changeGridTypeHandler = function (e) {
-  e.preventDefault();
-  if (e.target.closest('.btn__grid-column')) {
-    portfolioGrid.classList.add('portfolio__grid--columns');
-    portfolioGrid.classList.remove('portfolio__grid--rows');
-  }
-
-  if (e.target.closest('.btn__grid-row')) {
-    portfolioGrid.classList.remove('portfolio__grid--columns');
-    portfolioGrid.classList.add('portfolio__grid--rows');
-  }
-};
+///////////////////////////////////////////////////////
+//    FUNCTIONS
+///////////////////////////////////////////////////////
 
 const getItemSize = function (height, width) {
   const sizes = [
@@ -98,11 +80,68 @@ const loadPhotos = async function (url) {
   }
 };
 
-// const renderPhotos = function() {};
+///////////////////////////////////////////////////////
+//    HANDLERS
+///////////////////////////////////////////////////////
+
+const showMoreHandler = function (e) {
+  e.preventDefault();
+  console.log(e.target);
+  console.log('handle event');
+  page++;
+  loadPhotos(
+    `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
+  );
+};
+
+const changeGridTypeHandler = function (e) {
+  e.preventDefault();
+  if (e.target.closest('.btn__grid-column')) {
+    portfolioGrid.classList.add('portfolio__grid--columns');
+    portfolioGrid.classList.remove('portfolio__grid--rows');
+  }
+
+  if (e.target.closest('.btn__grid-row')) {
+    portfolioGrid.classList.remove('portfolio__grid--columns');
+    portfolioGrid.classList.add('portfolio__grid--rows');
+  }
+};
+
+const portfolioFilterHandler = function (e) {
+  e.preventDefault();
+  const { query } = e.target.dataset;
+  if (query) {
+    console.log(e.target.dataset.query);
+    page = 1;
+    portfolioGrid.innerHTML = '';
+    loadPhotos(
+      `${API_URL}query=${query}&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
+    );
+    btnsPortfolioFilter.forEach((btn) => {
+      if (btn.dataset.query === query)
+        btn.classList.add('nav-main__item--active');
+      else btn.classList.remove('nav-main__item--active');
+    });
+  }
+};
+///////////////////////////////////////////////////////
+//    EVENT LISTENERS
+///////////////////////////////////////////////////////
+
 btnShowMore.addEventListener('click', showMoreHandler);
 btnGridType.addEventListener('click', changeGridTypeHandler);
-
-loadPhotos(
-  `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
+btnsPortfolioFilter.forEach((btn) =>
+  btn.addEventListener('click', portfolioFilterHandler)
 );
-// console.log(portfolioGrid);
+
+///////////////////////////////////////////////////////
+//    INITIALIZATION
+///////////////////////////////////////////////////////
+
+const init = function () {
+  // `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
+  loadPhotos(
+    `${API_URL}query=nature&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
+  );
+};
+init();
