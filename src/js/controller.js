@@ -20,7 +20,7 @@ const btnShowMore = document.querySelector('.btn__show-more');
 //    FUNCTIONS
 ///////////////////////////////////////////////////////
 
-const getItemSize = function (height, width) {
+const getItemSize = (height, width) => {
   const sizes = [
     'item-size--small-0',
     'item-size--small-1',
@@ -47,7 +47,7 @@ const getItemSize = function (height, width) {
   return sizes[Math.floor((height / width) * 10)];
 };
 
-const renderPhotos = function (imgSrc, imgTitle, imgSize) {
+const renderPhotos = (imgSrc, imgTitle, imgSize) => {
   return `
   <div class="portfolio__grid-item ${imgSize}">
   <img
@@ -64,7 +64,7 @@ const renderPhotos = function (imgSrc, imgTitle, imgSize) {
   `;
 };
 
-const loadPhotos = async function (url) {
+const loadPhotos = async (url) => {
   try {
     const fetchData = await fetch(url);
     const { results } = await fetchData.json();
@@ -86,22 +86,20 @@ const loadPhotos = async function (url) {
 //    HANDLERS
 ///////////////////////////////////////////////////////
 
-const showMenuHandler = function (e) {
+const showMenuHandler = (e) => {
   e.preventDefault();
   mainMenu.classList.toggle('show');
 };
 
-const showMoreHandler = function (e) {
+const showMoreHandler = (e) => {
   e.preventDefault();
-  console.log(e.target);
-  console.log('handle event');
   page++;
   loadPhotos(
     `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
   );
 };
 
-const changeGridTypeHandler = function (e) {
+const changeGridTypeHandler = (e) => {
   e.preventDefault();
   if (e.target.closest('.btn__grid-column')) {
     portfolioGrid.classList.add('portfolio__grid--columns');
@@ -114,11 +112,10 @@ const changeGridTypeHandler = function (e) {
   }
 };
 
-const portfolioFilterHandler = function (e) {
+const portfolioFilterHandler = (e) => {
   e.preventDefault();
   const { query } = e.target.dataset;
   if (query) {
-    console.log(e.target.dataset.query);
     page = 1;
     portfolioGrid.innerHTML = '';
     loadPhotos(
@@ -146,7 +143,7 @@ btnsPortfolioFilter.forEach((btn) =>
 //    INITIALIZATION
 ///////////////////////////////////////////////////////
 
-const init = function () {
+const init = () => {
   // `${API_URL}query=london&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
   loadPhotos(
     `${API_URL}query=nature&page=${page}&per_page=${ITEMS_PER_PAGE}&client_id=${API_KEY}`
